@@ -1,0 +1,38 @@
+name: wf-ci-release
+
+on:
+  pull_request:
+    branches:
+      - release         # This will run when a PR targets the `develop` branch
+    types:
+      - opened
+      - synchronize     # Also runs when new commits are pushed to the PR
+
+jobs:
+  linting-job-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}  
+          # `github.ref` gives the target branch (develop)
+          # `github.head_ref` gives the source branch (e.g., your bugfix/feature branch)
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint HTML Files With HTMLHint
+        run: npx htmlhint "./**/*.html"
+
+      - name: Lint CSS Files With Stylelint
+        run: npx stylelint "**/*.css"
+
+      - name: Test Building With Parcel
+        run: npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./"
