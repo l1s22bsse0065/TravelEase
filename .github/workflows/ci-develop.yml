@@ -22,13 +22,13 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install  # safer than npm ci unless lockfile is present
+        run: npm install 
 
       - name: Lint HTML Files With HTMLHint
         run: npx htmlhint "src/**/*.html"
 
       - name: Lint CSS Files With Stylelint
-        run: npx stylelint "src/**/*.css"
+        run: npx stylelint "**/*.css"
 
   build-develop-job:
     name: Build With Parcel
