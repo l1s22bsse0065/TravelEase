@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-no-invalid-hex": true,
+    "declaration-block-no-duplicate-properties": true,
+    "selector-max-id": 1,
+    "block-no-empty": true,
+    "no-extra-semicolons": true,
+    "string-quotes": "double",
+    "indentation": 2,
+    "number-leading-zero": "always",
+    "unit-whitelist": ["em", "rem", "%", "s", "px"]
+  }
+}
