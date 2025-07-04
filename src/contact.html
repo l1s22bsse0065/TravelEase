@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - TravelEase</title>
+  <link rel="stylesheet" href="../styles/contact.css" />
 </head>
 <body>
-    <h1>hey</h1>
+
+  <header>
+    <h1>TravelEase</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="trip.html">Trip Planner</a></li>
+        <li><a href="stories.html">Travel Stories</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Contact Us</h2>
+    <p>We'd love to hear from you. Get in touch using the form below.</p>
+    <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2" alt="Contact Banner">
+  </section>
+
+  <div class="card-container">
+    <div class="card">
+      <h3>Send a Message</h3>
+      <form>
+        <input type="text" placeholder="Your Name" required style="width: 100%; padding: 0.5em; margin-bottom: 0.5em;">
+        <input type="email" placeholder="Your Email" required style="width: 100%; padding: 0.5em; margin-bottom: 0.5em;">
+        <textarea rows="5" placeholder="Your Message" required style="width: 100%; padding: 0.5em;"></textarea>
+        <button type="submit" style="margin-top: 0.5em; padding: 0.5em 1em; background-color: #024; color: white; border: none; border-radius: 4px; cursor: pointer;">Send</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Our Info</h3>
+      <p><strong>Email:</strong> support@travelease.com</p>
+      <p><strong>Phone:</strong> +1 234 567 890</p>
+      <p><strong>Address:</strong> 123 Wander Lane, Explore City</p>
+      <img src="https://images.unsplash.com/photo-1502920514313-52581002a659" alt="Office" />
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 TravelEase. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
