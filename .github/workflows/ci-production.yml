@@ -10,6 +10,7 @@ on:
 
 jobs:
   linting-job-production:
+    name: linting on production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
