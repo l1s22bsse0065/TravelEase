@@ -10,6 +10,7 @@ on:
 
 jobs:
   linting-job-release:
+    name: linting in release
     runs-on: ubuntu-latest
 
     steps:
