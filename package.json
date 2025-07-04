@@ -1,13 +1,13 @@
 {
-  "name": "project",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  "name": "travelease",
+  "version": "1.0.0",  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "parcel build ./src/index.html --dist-dir ./dist --public-url ./"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "parcel": "^2.15.4",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  }
 }

@@ -5,10 +5,7 @@
     "block-no-empty": true,
     "unit-no-unknown": true,
     "property-no-unknown": true,
-    "selector-type-no-unknown": true,
-    "no-extra-semicolons": true,
-    "declaration-block-trailing-semicolon": "always",
-    "string-quotes": "double",
-    "indentation": 2
+    "selector-type-no-unknown": true
+   
   }
 }
