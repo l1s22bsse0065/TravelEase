@@ -1,0 +1,36 @@
+name: wf-cd-prodcution
+on:
+  push:
+    branches:
+      - production
+jobs:
+  upload-job-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository On the Runner
+        uses: actions/checkout@v4
+        with:
+          ref: "${{github.ref}}" #github is a context and .ref is an argument which stores branch name and  ye btata hai event kis branch k liye create kia tha 
+      - name: Build Static Wesbite With Parcel
+
+        run: npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./" #--public-url "./" ye lgana hai warna links broken ho jaein gai
+      - name:  Upload Build Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+          name: "build-artifact-production"
+
+  deploy-job-production:
+    needs: "upload-job-production"
+    runs-on: ubuntu-latest
+    environment:
+      name: "production-env"
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy Website On GH-Pages
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: "build-artifact-production"
+          token: "${{github.token}}"
