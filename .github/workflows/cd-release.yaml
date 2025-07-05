@@ -1,42 +1,55 @@
 name: wf-cd-release
+
 on:
   push:
     branches:
       - release
+
 jobs:
-  build-job-release:
+  build-release:
+    name: Build Release Website
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository On the Runner
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          ref: "${{github.ref}}"
-      - name: Build Static Wesbite With Parcel
-        run: npx parcel build "./src/index.html" --dist-dir "./rel-dist" --public-url "./"
-      - name:  Upload Build Artifacts
+          ref: ${{ github.ref }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Website with Parcel
+        run: npx parcel build "./src/*.html" --dist-dir "./rel-dist" --public-url "./"
+
+      - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           path: "./rel-dist"
           name: "build-artifact-release"
-  deploy-job-release:
-    needs: "build-job-release"
+
+  deploy-release:
+    name: Deploy to Staging Environment
+    needs: build-release
     runs-on: ubuntu-latest
+
     environment:
-      name: "stagging-env"
+      name: stagging-env
+      url: ${{ steps.deployment.outputs.page_url }}
+
     permissions:
       pages: write
       id-token: write
+
     steps:
-      - name: Deploy Website On GH-Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
         with:
           artifact_name: "build-artifact-release"
-          token: "${{github.token}}" #token hai tou username aur password dene ki zroorat ni it will authentivate itself
-
-    
-
-
-
-
-
-
+          token: ${{ secrets.GITHUB_TOKEN }}
